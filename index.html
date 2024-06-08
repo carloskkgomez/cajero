@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cajero Automático - Carlos Gómez</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <video autoplay loop muted id="bgVideo">
+        <source src="./imagenes/istockphoto-1474479222-640_adpp_is.mp4" type="video/mp4" />
+        Su navegador no admite la etiqueta de video.
+    </video>
+    <main>
+        <section id="registro" class="form" style="display: none;">
+            <h2>Registro</h2>
+            <img src="./imagenes/about2.png" width="200px" height="200px" />
+            <form id="formulario" onsubmit="return cajero.registrarUsuario(event)">
+                <label for="identificacion">Identificación:</label>
+                <input type="text" id="identificacion" required />
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" required />
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" required />
+                <label for="clave">Clave:</label>
+                <input type="password" id="clave" required />
+                <label for="repetirClave">Repetir Clave:</label>
+                <input type="password" id="repetirClave" required />
+                <button type="submit" value="Registrar" class="w-100">Registrar</button>
+               
+                <button type="button" class="w-100" value="Inicio" onclick="cajero.mostrarInicio()">Inicio</button>
+            </form>
+        </section>
+
+        <section id="iniciar" class="form" style="display: block;">
+            <img src="./imagenes/about2.png" width="200px" height="200px" />
+            <h2>Iniciar Sesión</h2>
+            <table>
+                <tr>
+                    <td>Usuario:</td>
+                    <td><input type="text" id="usuarioInicio" required /></td>
+                </tr>
+                <tr>
+                    <td>Clave:</td>
+                    <td><input type="password" id="claveInicio" required /></td>
+                </tr>
+            </table>
+            <button onclick="cajero.iniciarSesion()" id="btnIngresar" class="w-100">Ingresar</button>
+            <button onclick="cajero.mostrarRegistrar()" class="w-100">Registrar</button>
+            <button onclick="cajero.tablaAdmin()" class="w-100">Tabla Admin</button> 
+            <p id="mensaje"></p>
+        </section>
+
+        <section id="menuUsuario" class="menuUsuario" style="display: none;">
+            <img src="./imagenes/about2.png" width="200px" height="200px" />
+            <h2>Consultas y Movimientos</h2>
+            <section class="botones">
+                <input type="button" class="btn-menu" value="Retirar" onclick="cajero.retirar()" />
+                <input type="button" class="btn-menu" value="Consultar Saldo" onclick="cajero.consultarSaldo()" />
+            </section>
+            <section class="botones">
+                <input type="button" class="btn-menu" value="Consignar" onclick="cajero.consignar()" />
+                <input type="button" class="btn-menu" value="Consultar Movimientos" onclick="cajero.consultarMovimientos()" />
+            </section>
+            <input type="button" value="Cambiar Clave" onclick="cajero.cambiarClave()" />
+            <br>
+            <input type="button" value="Salir" onclick="cajero.logout()" />
+        </section>
+
+        
+            <section id="tablaAdmin" class="tablaAdmin" style="display: none;">
+                <img src="./imagenes/about2.png" width="200px" height="200px" />
+                <h2 style="text-align: center;">Tabla Usuarios</h2>
+                <br>
+                <table id="usuariosTable">
+                    <tr>
+                        <th>Identificación</th>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                    </tr>
+                </table>
+                <p id="noUsersMessage" style="text-align: center; display: none;">No users</p>
+                <button onclick="cajero.mostrarRegistrar()" class="w-100">Crear</button> 
+                <button onclick="cajero.mostrarInicio()" type="button" class="w-100">Salir</button> 
+            </section>
+            
+      
+
+        <section id="movimientos" class="movimientos" style="display: none;">
+            <h2>Consulta de movimientos</h2>
+            <img src="./imagenes/about2.png" width="200px" height="200px" />
+            <section>
+                <table id="movimientosTable"></table>
+            </section>
+            <input type="button" value="Regresar" onclick="cajero.regresar()" />
+        </section>
+
+        <section id="administrarUsuarios" class="admin" style="display: none;">
+            <h2>Administrar Usuarios</h2>
+            <table id="usuariosTable">
+                <tr>
+                    <th>Identificación</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                </tr>
+            </table>
+            <input type="button" value="Regresar" onclick="cajero.mostrarMenuUsuario()" />
+        </section>
+    </main>
+    <script src="CajeroAutomatico.js"></script>
+</body>
+</html>
